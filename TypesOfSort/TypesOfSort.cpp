@@ -62,6 +62,128 @@ void insertionSort(int insertionarr[], int n) {
 
 }
 
+
+/*
+
+class Solution {
+public:
+//merge
+void merge(int mergearr[], int left, int mid, int lengthofarray) {
+
+	cout << "hii";
+	int lefthalf = left;
+	int righthalf = mid + 1;
+	int index = left;
+	int temp[1000] = { 0 };//storing elements in a temp array
+
+
+	while (left <= mid && righthalf <= lengthofarray) {
+
+		if (mergearr[left] < mergearr[righthalf]) {
+			temp[index] = mergearr[left];
+			left++;
+		}
+		else {
+			temp[index] = mergearr[righthalf];
+			righthalf++;
+
+		}
+		index++;
+	}
+
+
+	if (lefthalf > mid) {
+
+		while (righthalf <= lengthofarray) {
+			temp[index] = mergearr[righthalf];
+			index++;
+			righthalf++;
+		}
+	}
+	else {
+		while (lefthalf <= mid) {
+			temp[index] = mergearr[lefthalf];
+			index++;
+			lefthalf++;
+		}
+	}
+
+	for (int index = lefthalf; index <= righthalf; index++) {
+		mergearr[index] = temp[index];
+	}
+}
+
+//mergesort
+void mergeSort(int mergearr[], int left, int lengthofarray) {
+
+	cout << "ji";
+	if (left < lengthofarray) {
+		int mid = (left + lengthofarray) / 2; //midpoint 
+		mergeSort(mergearr, left, mid); //left half 
+		mergeSort(mergearr, mid + 1, lengthofarray); //right half
+		merge(mergearr, left, mid, lengthofarray);
+	}
+}
+
+};
+*/
+
+class Solution {
+public:
+	void merge(int arr[], int l, int mid, int r)
+	{
+		cout << l << mid << r << endl;;
+		int i = l;        // starting index of left half of arr
+		int j = mid + 1;   // starting index of right half of arr
+		int f = l;        // index used to transfer elements in temporary array
+		int temp[1000]; // temporary array
+
+		//storing elements in the temporary array in a sorted manner//
+
+		while (i <= mid && j <= r) {
+			if (arr[i] < arr[j]) {
+				temp[f] = arr[i];
+				i++;
+			}
+			else {
+				temp[f] = arr[j];
+				j++;
+			}
+			f++;
+		}
+
+		// if elements on the left half are still left //
+
+		if (i > mid) {
+			while (j <= r) {
+				temp[f] = arr[j];
+				f++; j++;
+			}
+		}
+		else {
+			//  if elements on the right half are still left //
+			while (i <= mid) {
+				temp[f] = arr[i];
+				f++; i++;
+			}
+		}
+
+		// transfering all elements from temporary to arr //
+		for (int f = l; f <= r; f++) {
+			arr[f] = temp[f];
+		}
+	}
+	void mergeSort(int arr[], int l, int r)
+	{
+		if (l < r) {
+			int mid = (l + r) / 2;
+			mergeSort(arr, l, mid);  // left half
+			mergeSort(arr, mid + 1, r); // right half
+			merge(arr, l, mid, r);  // merging sorted halves
+		}
+	}
+};
+
 int main()
 {
 	cout << "Types Of Sorts\n";
@@ -140,6 +262,35 @@ int main()
 
 	for (int jj = 0; jj < size(insertionarr);jj++) {
 		cout << insertionarr[jj] << " ";
+	}
+	cout << endl;
+
+	//merge sort
+
+	cout << "Merge Sort \n";
+	cout << "____________________\n";
+	cout << "                " << endl;
+	int mergearr[] = {100, 10,5,2,50 };
+	int mergeArrayLength = (sizeof(mergearr) / sizeof(int));
+	//cout << insertionArrayLength << endl;
+	cout << "Before Sorting" << endl;
+	//cout << "                " << endl;
+	for (int j = 0; j < size(mergearr); j++) {
+		cout << mergearr[j] << " ";
+	}
+	cout << endl;
+	cout << "                " << endl;
+	int left = 0;
+	Solution obj;
+	obj.mergeSort(mergearr,left, insertionArrayLength);
+
+	cout << "After Sorting" << endl;
+
+	cout << "                " << endl;
+
+
+	for (int jj = 0; jj < size(mergearr); jj++) {
+		cout << mergearr[jj] << " ";
 	}
 	cout << endl;
 
