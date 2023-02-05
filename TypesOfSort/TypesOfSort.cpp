@@ -3,7 +3,7 @@
 
 #include <iostream>
 using namespace std;
-
+//Selection Sort
 void selectionSort(int arr[],int n) {
 
 	for (int i = 0; i < n; i++) {
@@ -22,11 +22,52 @@ void selectionSort(int arr[],int n) {
 
 }
 
+
+//Bubble Sort
+
+void bubbleSort(int bubblearr[], int n) {
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0 ; j < n-i-1; j++) {
+			if (bubblearr[j] > bubblearr[j+1]) {
+				//cout << i<< " " << j << endl;;
+				//cout << bubblearr[i] << " " << bubblearr[j] << endl;;
+				int temp = bubblearr[j];
+				bubblearr[j] = bubblearr[j+1];
+				bubblearr[j+1] = temp;
+			}
+		}
+
+	}
+
+	
+
+}
+
+
+//insertion sort
+void insertionSort(int insertionarr[], int n) {
+
+	for (int i = 1; i < n; i++) {
+		int current = insertionarr[i];
+		int j = i - 1;
+		while (j >= 0 && insertionarr[j] > current) {
+
+			insertionarr[j + 1] = insertionarr[j];
+			j--;
+
+		}
+		insertionarr[j + 1] = current;
+	}
+
+}
+
 int main()
 {
 	cout << "Types Of Sorts\n";
 	cout << "                " << endl;
 	cout << "Selection Sort \n";
+	cout << "____________________\n";
 	cout << "                " << endl;
 	int arr[] = { 13,46,24,52,20,9 };
 	int lengthofarray = (sizeof(arr) / sizeof(int));
@@ -40,13 +81,67 @@ int main()
 	selectionSort(arr,lengthofarray);
 
 	cout << "After Sorting" << endl;
+	
 	cout << "                " << endl;
 
 
 	for (int k = 0; k < size(arr); k++) {
 		cout << arr[k] << " ";
 	}
+	cout << endl;
+	cout << endl;
 
+	cout << "Bubble Sort \n";
+	cout << "____________________\n";
+	//cout << "                "<< endl;
+	int bubblearr[] = { 20,1,44,233,55,3 };
+	int lengthofbubarray = (sizeof(bubblearr) / sizeof(int));
+	//cout << lengthofbubarray << endl;
+	cout << "Before Sorting" << endl;
+	cout << "                " << endl;
+	for (int kk = 0; kk < size(bubblearr); kk++) {
+		cout << bubblearr[kk] << " ";
+	}
+	cout << endl;
+	cout << "                " << endl;
+	bubbleSort(bubblearr, lengthofbubarray);
+
+	cout << "After Sorting" << endl;
+	
+	//cout << "                " << endl;
+
+
+	for (int kkk = 0; kkk < size(bubblearr); kkk++) {
+		cout << bubblearr[kkk] << " ";
+	}
+	cout << endl;
+	cout << endl;
+
+
+	cout << "Insertion Sort \n";
+	cout << "____________________\n";
+	cout << "                " << endl;
+	int insertionarr[] = {10,5,2 };
+	int insertionArrayLength = (sizeof(insertionarr) / sizeof(int));
+	//cout << insertionArrayLength << endl;
+	cout << "Before Sorting" << endl;
+	//cout << "                " << endl;
+	for (int j = 0; j < size(insertionarr); j++) {
+		cout << insertionarr[j] << " ";
+	}
+	cout << endl;
+	cout << "                " << endl;
+	insertionSort(insertionarr, insertionArrayLength);
+
+	cout << "After Sorting" << endl;
+	
+	cout << "                " << endl;
+
+
+	for (int jj = 0; jj < size(insertionarr);jj++) {
+		cout << insertionarr[jj] << " ";
+	}
+	cout << endl;
 
 }
 
